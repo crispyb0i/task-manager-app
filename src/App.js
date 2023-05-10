@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import TaskList from "./components/TaskList";
+import TaskForm from "./components/TaskForm";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	const [tasks, setTasks] = useState([]);
+
+	const addTask = (taskName) => {
+		const newTask = {
+			id: Date.now(),
+			name: taskName,
+			completed: false,
+		};
+		setTasks([...tasks, newTask]);
+	};
+
+	const completeTask = (taskId) => {
+		setTasks(
+			tasks.map((task) =>
+				task.id === taskId ? { ...task, completed: !task.completed } : task
+			)
+		);
+	};
+
+	const editTask = (taskId, newName) => {
+		setTasks(
+			tasks.map((task) =>
+				task.id === taskId ? { ...task, name: newName } : task
+			)
+		);
+	};
+
+	const deleteTask = (taskId) => {
+		setTasks(tasks.filter((task) => task.id !== taskId));
+	};
+
+	return (
+		<div>
+			<h1>Task Manager</h1>
+			<TaskForm addTask={addTask} />
+			<TaskList
+				tasks={tasks}
+				completeTask={completeTask}
+				editTask={editTask}
+				deleteTask={deleteTask}
+			/>
+		</div>
+	);
+};
 
 export default App;
