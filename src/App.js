@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navbar from "./components/Navbar";
 import TaskList from "./components/TaskList";
 import TaskForm from "./components/TaskForm";
 import "./styles.css";
@@ -36,15 +37,18 @@ const App = () => {
 	};
 
 	return (
-		<div className="container">
-			<h1>Task Manager</h1>
-			<TaskForm addTask={addTask} />
-			<TaskList
-				tasks={tasks}
-				completeTask={completeTask}
-				editTask={editTask}
-				deleteTask={deleteTask}
-			/>
+		<div>
+			<Navbar />
+			<div className="container">
+				<h1>Task Manager</h1>
+				<TaskForm addTask={addTask} />
+				<TaskList
+					tasks={tasks}
+					completeTask={completeTask}
+					editTask={editTask}
+					deleteTask={deleteTask}
+				/>
+			</div>
 		</div>
 	);
 };
