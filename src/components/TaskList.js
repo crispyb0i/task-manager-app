@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 
-const TaskList = ({ tasks, completeTask, editTask, deleteTask }) => {
+const TaskList = ({ tasks, completeTask, editTask, deleteTask, activeTab }) => {
 	const [editTaskId, setEditTaskId] = useState(null);
 	const [editTaskName, setEditTaskName] = useState("");
+	const filteredTasks =
+		activeTab === "completed" ? tasks.filter((task) => task.completed) : tasks;
+
+	console.log(activeTab);
 
 	const handleEditInputChange = (e) => {
 		setEditTaskName(e.target.value);
@@ -16,7 +20,7 @@ const TaskList = ({ tasks, completeTask, editTask, deleteTask }) => {
 
 	return (
 		<ul>
-			{tasks.map((task) => (
+			{filteredTasks.map((task) => (
 				<li key={task.id}>
 					{editTaskId === task.id ? (
 						<div>
