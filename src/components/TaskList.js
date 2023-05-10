@@ -6,8 +6,6 @@ const TaskList = ({ tasks, completeTask, editTask, deleteTask, activeTab }) => {
 	const filteredTasks =
 		activeTab === "completed" ? tasks.filter((task) => task.completed) : tasks;
 
-	console.log(activeTab);
-
 	const handleEditInputChange = (e) => {
 		setEditTaskName(e.target.value);
 	};
@@ -19,7 +17,7 @@ const TaskList = ({ tasks, completeTask, editTask, deleteTask, activeTab }) => {
 	};
 
 	return (
-		<ul>
+		<ul className="list">
 			{filteredTasks.map((task) => (
 				<li key={task.id}>
 					{editTaskId === task.id ? (

@@ -25,8 +25,6 @@ button {
 }
 
 ul {
-	display: flex;
-	flex-direction: column;
 	list-style-type: none;
 	padding: 0;
 }
@@ -58,6 +56,11 @@ li {
 a {
 	color: #fff;
 	text-decoration: none;
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
 }
 
 .tabs {
